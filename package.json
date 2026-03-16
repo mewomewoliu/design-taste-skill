@@ -1,0 +1,21 @@
+{
+  "name": "design-taste-skill",
+  "version": "1.0.0",
+  "description": "AI Design Studio — Claude Code skill package. Installs 8 specialist design skills for Claude Code.",
+  "keywords": ["claude", "claude-code", "claude-skills", "design", "ui", "design-system"],
+  "author": "mewomewoliu",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mewomewoliu/design-taste-skill.git"
+  },
+  "bin": {
+    "design-studio": "./scripts/install.js"
+  },
+  "scripts": {
+    "install-skills": "node ./scripts/install.js"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}
