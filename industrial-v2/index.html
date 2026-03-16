@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>mialiu.se – Industrial v2</title>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg:       #171712;   /* warehouse dark — warm near-black */
+    --surface:  #1f1f18;   /* slightly lifted surface */
+    --ink:      #e0d8c8;   /* raw paper tone — primary text */
+    --mid:      #8a8a6a;   /* olive mid — secondary text */
+    --dim:      #4a4a38;   /* dimmed — labels, disabled */
+    --rule:     #2a2a20;   /* structural dividers */
+    --olive:    #7a7a52;   /* single accent, used only for meaning */
+    --mono:     'IBM Plex Mono', 'Courier New', monospace;
+    --sans:     'Inter', 'Helvetica Neue', Helvetica, sans-serif;
+  }
+
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Nav ─────────────────────────────────────────── */
+  nav {
+    width: 1440px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 48px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .nav-stamp {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--dim);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 48px;
+  }
+
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--mid);
+    transition: color 0.1s;
+  }
+
+  .nav-links a.active { color: var(--ink); }
+  .nav-links a:hover  { color: var(--ink); }
+
+  .nav-time {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--dim);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ── Ticker strip ─────────────────────────────────── */
+  .ticker {
+    width: 1440px;
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+    height: 30px;
+    display: flex;
+    align-items: center;
+  }
+
+  .ticker-inner {
+    display: flex;
+    gap: 64px;
+    padding: 0 48px;
+    white-space: nowrap;
+  }
+
+  .ticker-item {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dim);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .ticker-item::before {
+    content: '·';
+    color: var(--olive);
+  }
+
+  /* ── Hero ─────────────────────────────────────────── */
+  .hero {
+    width: 1440px;
+    display: grid;
+    grid-template-columns: 48px 80px 1fr 1fr 48px;
+    grid-template-rows: auto auto auto;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* Index column — catalogue reference number */
+  .hero-index {
+    grid-column: 2;
+    grid-row: 1 / 4;
+    border-right: 1px solid var(--rule);
+    padding: 48px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 8px;
+    padding-right: 24px;
+  }
+
+  .index-ref {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--dim);
+    letter-spacing: 0.08em;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+
+  /* Name block */
+  .hero-name-block {
+    grid-column: 3;
+    grid-row: 1;
+    padding: 48px 48px 32px 48px;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .name-descriptor {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 16px;
+  }
+
+  .hero-name {
+    font-family: var(--sans);
+    font-size: 112px;
+    font-weight: 300;
+    line-height: 0.9;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+  }
+
+  /* Spec grid — right column */
+  .hero-specs {
+    grid-column: 4;
+    grid-row: 1 / 3;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .spec-row {
+    padding: 20px 48px;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 16px;
+    align-items: baseline;
+  }
+
+  .spec-row:last-child { border-bottom: none; flex: 1; }
+
+  .spec-key {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dim);
+    padding-top: 2px;
+  }
+
+  .spec-val {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--mid);
+  }
+
+  .spec-val strong {
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .spec-val a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+
+  /* Tagline row */
+  .hero-tagline {
+    grid-column: 3;
+    grid-row: 2;
+    padding: 32px 48px;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .tagline-text {
+    font-size: 26px;
+    font-weight: 300;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    max-width: 520px;
+  }
+
+  /* Status row */
+  .hero-status {
+    grid-column: 3 / 5;
+    grid-row: 3;
+    padding: 14px 48px;
+    display: flex;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .status-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .status-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--olive);
+    flex-shrink: 0;
+  }
+
+  .status-text {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  /* ── Work section ─────────────────────────────────── */
+  .work-header {
+    width: 1440px;
+    display: grid;
+    grid-template-columns: 48px 80px 1fr 48px;
+    border-bottom: 1px solid var(--rule);
+    padding: 14px 0;
+  }
+
+  .work-header-inner {
+    grid-column: 3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+  }
+
+  .work-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .work-count {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--dim);
+  }
+
+  /* Work manifest — list view, not grid */
+  .work-manifest {
+    width: 1440px;
+  }
+
+  .manifest-row {
+    display: grid;
+    grid-template-columns: 48px 80px 48px 1fr 200px 160px 100px 48px;
+    border-bottom: 1px solid var(--rule);
+    align-items: stretch;
+  }
+
+  /* Column header row */
+  .manifest-row.header {
+    background: var(--surface);
+  }
+
+  .manifest-row.header .col {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim);
+    padding: 10px 16px;
+    border-right: 1px solid var(--rule);
+  }
+
+  .manifest-row.header .col:last-child { border-right: none; }
+
+  /* Data rows */
+  .manifest-row .col {
+    padding: 20px 16px;
+    border-right: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    color: var(--mid);
+  }
+
+  .manifest-row .col:last-child { border-right: none; }
+
+  .col-idx {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--dim);
+    justify-content: center;
+  }
+
+  .col-thumb {
+    padding: 12px 16px !important;
+  }
+
+  .thumb {
+    width: 48px;
+    height: 36px;
+    background: var(--rule);
+    flex-shrink: 0;
+  }
+
+  .thumb.t1 { background: #2a3040; }
+  .thumb.t2 { background: #2a3832; }
+  .thumb.t3 { background: #383028; }
+  .thumb.t4 { background: #303038; }
+  .thumb.t5 { background: #283828; }
+
+  .col-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 3px;
+  }
+
+  .col-name .client {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--mid);
+    font-family: var(--mono);
+    letter-spacing: 0.04em;
+  }
+
+  .col-type {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+  }
+
+  .col-year {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--dim);
+    justify-content: flex-end;
+  }
+
+  .tag-list {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--dim);
+    border: 1px solid var(--rule);
+    padding: 2px 6px;
+  }
+
+  /* ── Footer ───────────────────────────────────────── */
+  .footer {
+    width: 1440px;
+    display: grid;
+    grid-template-columns: 48px 80px 1fr 48px;
+    padding: 20px 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .footer-inner {
+    grid-column: 3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 48px;
+  }
+
+  .footer-text {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--dim);
+    letter-spacing: 0.08em;
+  }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <span class="nav-stamp">ML–2025 / v.08</span>
+  <div class="nav-links">
+    <a href="#" class="active">Works</a>
+    <a href="#">Design approach</a>
+    <a href="#">About</a>
+  </div>
+  <span class="nav-time">11:02 UTC+1</span>
+</nav>
+
+<!-- Ticker strip -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">Product Maker</span>
+    <span class="ticker-item">AI-Integrated Workflows</span>
+    <span class="ticker-item">Stockholm, SE</span>
+    <span class="ticker-item">Systems Thinking</span>
+    <span class="ticker-item">Research-led</span>
+    <span class="ticker-item">Available · Consulting</span>
+    <span class="ticker-item">Netlight AB</span>
+    <span class="ticker-item">Scania · Thermo-Calc · Storykit</span>
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+
+  <!-- Index column -->
+  <div class="hero-index">
+    <span class="index-ref">REF / ML–001 / PRODUCT DESIGNER</span>
+  </div>
+
+  <!-- Name -->
+  <div class="hero-name-block">
+    <p class="name-descriptor">Designer / Maker</p>
+    <h1 class="hero-name">Mia<br>Liu</h1>
+  </div>
+
+  <!-- Specs -->
+  <div class="hero-specs">
+    <div class="spec-row">
+      <span class="spec-key">Practice</span>
+      <p class="spec-val">Not just a designer — a <strong>Product Maker</strong> who embraces AI as coworking mates. I envision a future where design and intelligence are inseparable, and I build toward it every day.</p>
+    </div>
+    <div class="spec-row">
+      <span class="spec-key">Engagements</span>
+      <p class="spec-val">Consulting at <a href="#">Netlight AB</a>, embedded with <a href="#">Scania</a>, <a href="#">Thermo-Calc</a>, and <a href="#">Storykit</a> — solving complex product challenges through research, systems thinking, and AI-integrated workflows.</p>
+    </div>
+    <div class="spec-row">
+      <span class="spec-key">Approach</span>
+      <p class="spec-val">Research · Systems design · AI workflows</p>
+    </div>
+  </div>
+
+  <!-- Tagline -->
+  <div class="hero-tagline">
+    <p class="tagline-text">I design at the edge where human intuition meets AI &amp; technology.</p>
+  </div>
+
+  <!-- Status row -->
+  <div class="hero-status">
+    <div class="status-chip">
+      <div class="status-dot"></div>
+      <span class="status-text">Available for projects</span>
+    </div>
+    <div class="status-chip">
+      <span class="status-text">Stockholm / UTC+1</span>
+    </div>
+    <div class="status-chip">
+      <span class="status-text">AI-Native</span>
+    </div>
+  </div>
+
+</section>
+
+<!-- Work header -->
+<div class="work-header">
+  <div class="work-header-inner">
+    <span class="work-title">Client work</span>
+    <span class="work-count">008 projects</span>
+  </div>
+</div>
+
+<!-- Work manifest -->
+<div class="work-manifest">
+
+  <!-- Column headers -->
+  <div class="manifest-row header">
+    <div class="col">&nbsp;</div>
+    <div class="col">Ref</div>
+    <div class="col">—</div>
+    <div class="col">Project</div>
+    <div class="col">Type</div>
+    <div class="col">Tags</div>
+    <div class="col">Year</div>
+    <div class="col">&nbsp;</div>
+  </div>
+
+  <!-- Rows -->
+  <div class="manifest-row">
+    <div class="col col-idx">&nbsp;</div>
+    <div class="col col-idx" style="font-family:var(--mono);font-size:10px;color:var(--dim);">001</div>
+    <div class="col col-thumb"><div class="thumb t1"></div></div>
+    <div class="col col-name">
+      <span>Fleet Intelligence Dashboard</span>
+      <span class="client">Scania</span>
+    </div>
+    <div class="col col-type">Product design</div>
+    <div class="col">
+      <div class="tag-list">
+        <span class="tag">AI</span>
+        <span class="tag">Enterprise</span>
+        <span class="tag">Data viz</span>
+      </div>
+    </div>
+    <div class="col col-year">2024</div>
+    <div class="col col-idx">&nbsp;</div>
+  </div>
+
+  <div class="manifest-row">
+    <div class="col col-idx">&nbsp;</div>
+    <div class="col col-idx" style="font-family:var(--mono);font-size:10px;color:var(--dim);">002</div>
+    <div class="col col-thumb"><div class="thumb t2"></div></div>
+    <div class="col col-name">
+      <span>Content Creation Platform</span>
+      <span class="client">Storykit</span>
+    </div>
+    <div class="col col-type">UX design</div>
+    <div class="col">
+      <div class="tag-list">
+        <span class="tag">SaaS</span>
+        <span class="tag">Video</span>
+      </div>
+    </div>
+    <div class="col col-year">2024</div>
+    <div class="col col-idx">&nbsp;</div>
+  </div>
+
+  <div class="manifest-row">
+    <div class="col col-idx">&nbsp;</div>
+    <div class="col col-idx" style="font-family:var(--mono);font-size:10px;color:var(--dim);">003</div>
+    <div class="col col-thumb"><div class="thumb t3"></div></div>
+    <div class="col col-name">
+      <span>Thermodynamic Research Tools</span>
+      <span class="client">Thermo-Calc</span>
+    </div>
+    <div class="col col-type">Systems design</div>
+    <div class="col">
+      <div class="tag-list">
+        <span class="tag">B2B</span>
+        <span class="tag">Research</span>
+        <span class="tag">Complex UI</span>
+      </div>
+    </div>
+    <div class="col col-year">2023</div>
+    <div class="col col-idx">&nbsp;</div>
+  </div>
+
+  <div class="manifest-row">
+    <div class="col col-idx">&nbsp;</div>
+    <div class="col col-idx" style="font-family:var(--mono);font-size:10px;color:var(--dim);">004</div>
+    <div class="col col-thumb"><div class="thumb t4"></div></div>
+    <div class="col col-name">
+      <span>AI Workflow Integration</span>
+      <span class="client">Netlight AB</span>
+    </div>
+    <div class="col col-type">Design strategy</div>
+    <div class="col">
+      <div class="tag-list">
+        <span class="tag">AI</span>
+        <span class="tag">Consulting</span>
+      </div>
+    </div>
+    <div class="col col-year">2023</div>
+    <div class="col col-idx">&nbsp;</div>
+  </div>
+
+  <div class="manifest-row">
+    <div class="col col-idx">&nbsp;</div>
+    <div class="col col-idx" style="font-family:var(--mono);font-size:10px;color:var(--dim);">005</div>
+    <div class="col col-thumb"><div class="thumb t5"></div></div>
+    <div class="col col-name">
+      <span>Driver Experience System</span>
+      <span class="client">Scania</span>
+    </div>
+    <div class="col col-type">Product design</div>
+    <div class="col">
+      <div class="tag-list">
+        <span class="tag">Hardware</span>
+        <span class="tag">HMI</span>
+      </div>
+    </div>
+    <div class="col col-year">2022</div>
+    <div class="col col-idx">&nbsp;</div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <div class="footer-inner">
+    <span class="footer-text">Mia Liu · Product Designer · Stockholm, SE</span>
+    <span class="footer-text">mialiu.se · 2025</span>
+  </div>
+</div>
+
+</body>
+</html>

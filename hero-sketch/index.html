@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>mialiu.se – Hero sketch</title>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;900&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --blue: #0000ee;
+    --black: #0a0a0a;
+    --mid: #555;
+    --font: 'Inter', system-ui, sans-serif;
+  }
+
+  body {
+    font-family: var(--font);
+    background: #fff;
+    color: var(--black);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Nav ──────────────────────────────────────────── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    background: #fff;
+    z-index: 100;
+  }
+
+  nav a {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--black);
+    opacity: 0.4;
+    transition: opacity 0.15s;
+  }
+
+  /* Active state: 2px rule below, full opacity, blue — no browser-default underline */
+  nav a.active {
+    color: var(--blue);
+    opacity: 1;
+    padding-bottom: 3px;
+    border-bottom: 2px solid var(--blue);
+  }
+
+  nav a:hover { opacity: 1; }
+
+  /* ── Hero ─────────────────────────────────────────── */
+  .hero {
+    width: 1440px;
+    min-height: 100vh;
+    padding: 140px 40px 80px;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    grid-template-rows: auto 1fr auto;
+    column-gap: 80px;
+    align-items: start;
+  }
+
+  /* Name — owns the space */
+  .hero-name {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: clamp(96px, 10vw, 148px);
+    font-weight: 900;
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    color: var(--black);
+    margin-bottom: 24px;
+  }
+
+  /* Tagline — subordinate: regular weight, clearly secondary */
+  .hero-tagline {
+    grid-column: 1;
+    grid-row: 2;
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 400;           /* was heavy/bold — now clearly below the name */
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    max-width: 560px;
+    align-self: start;
+  }
+
+  /* Bio — right column, aligns to tagline top */
+  .hero-bio {
+    grid-column: 2;
+    grid-row: 1 / 3;            /* spans name + tagline rows */
+    align-self: end;            /* sits at the baseline of tagline */
+    padding-bottom: 4px;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: #444;
+  }
+
+  .hero-bio strong {
+    font-weight: 600;
+    color: var(--black);
+  }
+
+  .hero-bio a {
+    color: var(--black);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 1px;
+  }
+
+  /* Metadata row */
+  .hero-meta {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-top: 48px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--blue);
+  }
+
+  .hero-meta span + span::before {
+    content: ' / ';
+    color: var(--blue);
+    opacity: 0.4;
+    margin: 0 6px;
+  }
+
+  .hero-meta .clock {
+    color: var(--blue);
+  }
+
+  /* Scroll indicator — committed animation, not a ghost */
+  .scroll-indicator {
+    margin-top: 64px;
+    grid-column: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: var(--black);
+    opacity: 0.2;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: 0;
+    width: 1px;
+    height: 40px;
+    background: var(--black);
+    animation: scroll-tick 1.6s ease-in-out infinite;
+  }
+
+  @keyframes scroll-tick {
+    0%   { top: -40px; opacity: 0; }
+    20%  { opacity: 1; }
+    80%  { opacity: 1; }
+    100% { top: 40px; opacity: 0; }
+  }
+
+  .scroll-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--black);
+    opacity: 0.3;
+  }
+
+  /* ── Work section preview ─────────────────────────── */
+  .work-section {
+    width: 1440px;
+    padding: 0 40px 80px;
+  }
+
+  .work-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  .work-label {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--black);
+  }
+
+  /* [client_work] — brackets without the meaningless ■ */
+  .work-label::before { content: '['; }
+  .work-label::after  { content: ']'; }
+
+  .work-count {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--blue);
+  }
+  .work-count::before { content: '['; }
+  .work-count::after  { content: ']'; }
+
+  /* Placeholder device grid */
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    height: 320px;
+  }
+
+  .work-card {
+    background: #f2f2f2;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #aaa;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <a href="#" class="active">WORKS</a>
+  <a href="#">DESIGN_APPROACH</a>
+  <a href="#">ABOUT</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+
+  <h1 class="hero-name">Mia Liu</h1>
+
+  <p class="hero-tagline">
+    I design at the edge where<br>
+    human intuition meets<br>
+    AI &amp; technology.
+  </p>
+
+  <!-- Bio: aligns to tagline baseline, not floating -->
+  <div class="hero-bio">
+    <p>Not just a designer — a <strong>Product Maker</strong> who embraces AI as
+    coworking mates. I envision a future where design and intelligence are
+    inseparable, and I build toward it every day.</p>
+    <br>
+    <p>Currently consulting at <a href="#">Netlight AB</a>, embedded with
+    <a href="#">Scania</a>, <a href="#">Thermo-Calc</a>, and
+    <a href="#">Storykit</a> — solving complex product challenges through
+    research, systems thinking, and AI-integrated workflows.</p>
+  </div>
+
+  <!-- Metadata -->
+  <div class="hero-meta">
+    <span>[PRODUCT_MAKER]</span>
+    <span>[STOCKHOLM]</span>
+    <span>[AI_NATIVE]</span>
+    <span class="clock">11:02:15 UTC+1</span>
+  </div>
+
+</section>
+
+<!-- Scroll indicator — separate from grid so it sits naturally below -->
+<div style="padding: 0 40px 80px; width:1440px;">
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    <span class="scroll-label">Scroll</span>
+  </div>
+</div>
+
+<!-- Work section -->
+<div class="work-section">
+  <div class="work-header">
+    <span class="work-label">client_work</span>
+    <span class="work-count">08</span>
+  </div>
+  <div class="work-grid">
+    <div class="work-card">Project 01</div>
+    <div class="work-card">Project 02</div>
+    <div class="work-card">Project 03</div>
+  </div>
+</div>
+
+</body>
+</html>

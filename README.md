@@ -1,89 +1,125 @@
-# design-taste
+# Design Skill Package
 
-A Claude skill that acts as your personal design director — giving opinionated, taste-aligned feedback, generating design specs, writing production-ready UI code, and exploring design directions.
+A collection of Claude skills that work together as a multidisciplinary AI design studio. Install one or all of them — each skill is independent and activates automatically based on what you're working on.
 
-It encodes a specific aesthetic: effortless, aspirational, timeless. Think Linear, Vercel, Stripe, Aesop.
+The skills share a coherent design philosophy and know how to collaborate with each other.
 
 ---
 
-## What it does
+## The skills
 
-Drop it into any Claude conversation and it automatically detects what you need:
+### design-taste ⭐ Start here
+The aesthetic intelligence layer. Encodes a specific design sensibility — effortless, aspirational, timeless — and applies it across four workflows: Critique, Spec, Code, and Variant. Includes a Style Directions Library with four named aesthetic directions (Industrial Sustainable Minimalism, Editorial Design Studio, Playful Digital Agency, Strategic Institutional Minimalism).
 
-| You say... | What happens |
-|---|---|
-| "Here's my dashboard header, what's wrong with it?" | **Critique** — specific fixes, no hedging |
-| "Build me a pricing table" or share a Figma URL | **Code** — production-ready React + Tailwind |
-| "Give me a type scale and color palette for my SaaS" | **Spec** — exact tokens, CSS custom properties |
-| "Show me a few directions for this nav" | **Variants** — 3 distinct directions with tradeoffs |
+**Triggers on:** UI/component work, design feedback, design tokens, "make it look good," Figma URLs, type scales, color palettes.
+
+---
+
+### Design Studio — 7 specialist roles
+
+Install all seven to assemble the full studio. Each role activates on different types of work.
+
+| Skill | Role | Triggers on |
+|---|---|---|
+| `design-director` | Creative director + quality guardian | Overall design review, cross-discipline critique, "does this all hang together" |
+| `brand-director` | Brand strategy + identity | Brand personality, positioning, visual identity principles, tone of voice |
+| `content-director` | Messaging + UX copy | Page copy, messaging frameworks, "what should we say", microcopy |
+| `design-engineer` | Design-to-code bridge | Component implementation, technical specs, feasibility, front-end architecture |
+| `design-system-director` | Tokens + components + systems | Design tokens, component libraries, scaling design, consistency audits |
+| `motion-designer` | Animation + interaction timing | Animations, transitions, motion principles, "how should this move" |
+| `product-designer` | UX + flows + information architecture | User flows, wireframes, "how should this work", navigation structure |
 
 ---
 
 ## Install in 3 steps
 
-### Step 1 — Download the skill file
+### Step 1 — Download the skill files
 
-Download **`design-taste.skill`** from this repo. Click the file name above, then click the download button (the arrow icon in the top right of the file viewer).
+Download the `.skill` files you want from this repo. Click a file name, then click the download button (arrow icon, top right).
+
+Recommended starting set:
+- `design-taste.skill` — always useful
+- `design-engineer.skill` — extends design-taste with technical depth
+- `design-director.skill` — ties everything together
+
+Or download all 8 for the full studio.
 
 ### Step 2 — Open Claude Code settings
 
-Open Claude Code on your desktop. Press `Cmd + ,` (Mac) or go to **Settings** from the menu.
+Open Claude Code. Press `Cmd + ,` (Mac) or go to **Settings** from the menu.
 
 Navigate to the **Skills** tab.
 
 ### Step 3 — Install
 
-Click **Install from file**, select the `design-taste.skill` file you just downloaded, and confirm.
+Click **Install from file** and select each `.skill` file. Repeat for each one.
 
-That's it. The skill is now active in all your Claude conversations.
-
----
-
-## How to use it
-
-Just talk to Claude naturally. The skill triggers automatically when your message involves design.
-
-**Get a critique:**
-> "My SaaS header has a logo on the left, nav in the center, user avatar on the right. White background, `box-shadow: 0 2px 8px rgba(0,0,0,0.15)`, nav links in `#0066FF`. What's wrong with it?"
-
-**Build a component:**
-> "Build me a pricing table with three tiers — Free, Pro at $12/mo, and Enterprise. Clean, modern, the Pro tier should stand out."
-
-**Get a design spec:**
-> "I'm building a project management tool for consultants. Give me a full design token set — type scale, color palette, spacing, everything."
-
-**Explore directions:**
-> "I need a sidebar navigation component. Show me three different design directions."
+Done. Skills activate automatically based on your conversation context.
 
 ---
 
-## The aesthetic
+## How the team works together
 
-This skill is opinionated. It will always push you toward:
+The skills are designed to collaborate. A typical project flow:
 
-- **Restraint over decoration** — if something doesn't earn its place, it gets cut
-- **Type doing real work** — hierarchy through weight and size, not color and noise
-- **Considered spacing** — generous, rhythmic, never cramped
-- **Timeless over trendy** — no neon gradients, heavy glassmorphism, or busy animations
-- **Reference-grade output** — code that could sit next to a Stripe or Linear screenshot without embarrassment
+```
+Brand Director     → defines brand identity, personality, visual principles
+    ↓
+Content Director   → shapes messaging and voice from the brand framework
+    ↓
+Design System Director → builds tokens and components from the brand principles
+    ↓
+Product Designer   → designs flows and interfaces using the system
+    ↓
+design-taste / Design Engineer  → produces and implements the visual UI
+    ↓
+Motion Designer    → defines how everything moves and transitions
+    ↓
+Design Director    → reviews all outputs for coherence and quality
+```
 
-If you ask for something that breaks the aesthetic (rainbow gradients, etc.), the skill will do it — but it'll note the tradeoff.
+In practice, roles activate on demand — you don't need to follow this sequence. Ask about brand positioning and the Brand Director activates. Ask to build a component and the Design Engineer + design-taste activate together.
 
 ---
 
-## Customize it
+## Example prompts
 
-The skill's full instructions live in `design-taste/SKILL.md`. Open that file to:
+**Brand work:**
+> "I'm launching a sustainable skincare brand targeting women 30–45 who are skeptical of greenwashing. Define our brand positioning and personality."
 
-- Add your own brand colors or font choices
-- Adjust the reference brands to match your taste
-- Tweak the four modes to fit your workflow
+**Content:**
+> "Write the homepage hero copy for our project management tool. It's for freelancers who are tired of heavyweight tools like Asana."
+
+**Design system:**
+> "Build a complete design token set for a fintech product. Light and dark mode. Premium, trustworthy, calm."
+
+**Product design:**
+> "Map the cancellation flow for a SaaS subscription. The goal is honest — we don't want dark patterns, but we do want one save offer."
+
+**Motion:**
+> "Define the motion principles for a playful creative agency brand. What's the timing vocabulary and what does it feel like to use?"
+
+**Component code:**
+> "Build a pricing table — Free, Pro at $12/mo, Enterprise. The Pro tier should stand out without being loud."
+
+**Full studio:**
+> "We're building a B2B analytics platform for enterprise clients. The brand needs to feel credible and intelligent. Start by defining the brand direction, then give me a design token set aligned to it."
+
+---
+
+## Customize any skill
+
+Every skill's instructions live in a `SKILL.md` file inside its directory. Open it to:
+
+- Adjust role behavior, focus areas, or output formats
+- Add your own brand specifics (colors, fonts, brand guidelines)
+- Tune the collaboration model between roles
 
 After editing, repackage and reinstall:
 
 ```bash
 # From the skill-creator directory
-python3 -m scripts.package_skill /path/to/design-taste
+python3 -m scripts.package_skill /path/to/skill-directory
 
 # Then reinstall the .skill file in Claude Code settings
 ```
@@ -93,9 +129,24 @@ python3 -m scripts.package_skill /path/to/design-taste
 ## What's in this repo
 
 ```
-design-taste/
-└── SKILL.md          — The full skill instructions
+design-taste/                    — The aesthetic intelligence skill
+design-studio/
+  ├── design-director/           — Creative director
+  ├── brand-director/            — Brand strategy
+  ├── content-director/          — Messaging and copy
+  ├── design-engineer/           — Design-to-code
+  ├── design-system-director/    — Tokens and systems
+  ├── motion-designer/           — Animation
+  └── product-designer/          — UX and flows
 
-design-taste.skill    — The installable file (zip archive of the above)
-README.md             — This file
+design-taste.skill               — Installable files
+design-director.skill
+brand-director.skill
+content-director.skill
+design-engineer.skill
+design-system-director.skill
+motion-designer.skill
+product-designer.skill
+
+README.md
 ```

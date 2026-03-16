@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>mialiu.se – Editorial</title>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg:    #ffffff;
+    --ink:   #080808;
+    --mid:   #888;
+    --dim:   #bbb;
+    --rule:  #e8e8e8;
+    --sans:  'DM Sans', system-ui, sans-serif;
+    --serif: 'DM Serif Display', Georgia, serif;
+  }
+
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Nav — interface almost disappears ───────────── */
+  nav {
+    width: 1440px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 48px;
+  }
+
+  nav a {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color 0.12s;
+  }
+
+  nav a.active { color: var(--ink); }
+  nav a:hover  { color: var(--ink); }
+
+  .nav-group {
+    display: flex;
+    gap: 32px;
+  }
+
+  /* ── Hero — type IS the design ───────────────────── */
+  .hero {
+    width: 1440px;
+    padding: 0 48px;
+    padding-top: 48px;
+    border-top: 1px solid var(--rule);
+    position: relative;
+  }
+
+  /* The name at editorial scale — compositional, not headline */
+  .name-display {
+    font-family: var(--serif);
+    font-size: 200px;
+    font-weight: 400;
+    line-height: 0.88;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    /* Compositional: slight left bleed intent */
+    margin-left: -6px;
+  }
+
+  /* Pull the italic word into the name for rhythm */
+  .name-display em {
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  /* Tagline — editorial pull-quote, quiet */
+  .hero-tagline-row {
+    display: grid;
+    grid-template-columns: 1fr 480px;
+    gap: 48px;
+    align-items: end;
+    margin-top: 40px;
+    padding-bottom: 56px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .tagline {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.3;
+    color: var(--ink);
+    max-width: 560px;
+  }
+
+  .hero-bio {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .bio-text {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--mid);
+  }
+
+  .bio-text strong {
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .bio-text a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+
+  .bio-meta {
+    display: flex;
+    gap: 24px;
+  }
+
+  .meta-chip {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+
+  /* ── Work section — work as hero ─────────────────── */
+  .work-section {
+    width: 1440px;
+    padding: 0 48px;
+  }
+
+  /* Featured project — full compositional weight */
+  .project-featured {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 0;
+    border-bottom: 1px solid var(--rule);
+    padding: 64px 0;
+    align-items: end;
+  }
+
+  .project-image-lg {
+    aspect-ratio: 16/10;
+    background: #0d0d0d;   /* dark — no color, work fills this */
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Simulated project content */
+  .project-image-lg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      #1a2035 0%,
+      #0d1220 100%
+    );
+  }
+
+  .project-image-lg.warm::after {
+    background: linear-gradient(135deg, #2a1f18 0%, #1a1210 100%);
+  }
+
+  .project-image-lg.cool::after {
+    background: linear-gradient(135deg, #18202a 0%, #101520 100%);
+  }
+
+  .project-meta-lg {
+    padding-left: 56px;
+    padding-bottom: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 20px;
+  }
+
+  .project-index {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    color: var(--dim);
+  }
+
+  .project-title-lg {
+    font-family: var(--serif);
+    font-size: 52px;
+    font-weight: 400;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+
+  .project-client {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--mid);
+    letter-spacing: 0.02em;
+  }
+
+  .project-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+
+  .tag + .tag::before {
+    content: '·';
+    margin-right: 8px;
+    color: var(--dim);
+  }
+
+  /* Project grid — 3 columns, editorial rhythm */
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .project-card {
+    border-right: 1px solid var(--rule);
+    padding: 0;
+  }
+
+  .project-card:last-child { border-right: none; }
+
+  .project-image-sm {
+    aspect-ratio: 4/3;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-image-sm.a::after { content: ''; position: absolute; inset: 0; background: #1a2832; }
+  .project-image-sm.b::after { content: ''; position: absolute; inset: 0; background: #281a1a; }
+  .project-image-sm.c::after { content: ''; position: absolute; inset: 0; background: #1a281a; }
+
+  .project-card-meta {
+    padding: 20px 24px 28px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .project-title-sm {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  .project-sub {
+    font-size: 12px;
+    color: var(--mid);
+    letter-spacing: 0.02em;
+  }
+
+  /* ── Footer ───────────────────────────────────────── */
+  .footer {
+    width: 1440px;
+    padding: 24px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--rule);
+  }
+
+  .footer-text {
+    font-size: 12px;
+    color: var(--dim);
+    letter-spacing: 0.02em;
+  }
+</style>
+</head>
+<body>
+
+<!-- Nav — barely there -->
+<nav>
+  <a href="#" class="active">Works</a>
+  <div class="nav-group">
+    <a href="#">Design approach</a>
+    <a href="#">About</a>
+  </div>
+</nav>
+
+<!-- Hero — type is the design -->
+<section class="hero">
+
+  <h1 class="name-display">Mia <em>Liu</em></h1>
+
+  <div class="hero-tagline-row">
+    <p class="tagline">
+      I design at the edge where<br>
+      human intuition meets AI &amp; technology.
+    </p>
+
+    <div class="hero-bio">
+      <p class="bio-text">
+        Not just a designer — a <strong>Product Maker</strong> who embraces AI as
+        coworking mates. Currently consulting at <a href="#">Netlight AB</a>, embedded
+        with <a href="#">Scania</a>, <a href="#">Thermo-Calc</a>, and
+        <a href="#">Storykit</a> — solving complex product challenges through research,
+        systems thinking, and AI-integrated workflows.
+      </p>
+      <div class="bio-meta">
+        <span class="meta-chip">Stockholm</span>
+        <span class="meta-chip">AI-Native</span>
+        <span class="meta-chip">Available</span>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- Work -->
+<section class="work-section">
+
+  <!-- Featured -->
+  <div class="project-featured">
+    <div class="project-image-lg"></div>
+    <div class="project-meta-lg">
+      <span class="project-index">001 / 008</span>
+      <h2 class="project-title-lg">Fleet<br>Intelligence</h2>
+      <span class="project-client">Scania · 2024</span>
+      <div class="project-tags">
+        <span class="tag">Product design</span>
+        <span class="tag">AI</span>
+        <span class="tag">Enterprise</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grid -->
+  <div class="project-grid">
+
+    <div class="project-card">
+      <div class="project-image-sm a"></div>
+      <div class="project-card-meta">
+        <h3 class="project-title-sm">Content Platform</h3>
+        <span class="project-sub">Storykit · 2024 · UX design</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-image-sm b"></div>
+      <div class="project-card-meta">
+        <h3 class="project-title-sm">Research Tools</h3>
+        <span class="project-sub">Thermo-Calc · 2023 · Systems design</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-image-sm c"></div>
+      <div class="project-card-meta">
+        <h3 class="project-title-sm">AI Workflow Integration</h3>
+        <span class="project-sub">Netlight AB · 2023 · Design strategy</span>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- Footer -->
+<div class="footer">
+  <span class="footer-text">Mia Liu · mialiu.se</span>
+  <span class="footer-text">Stockholm · 2025</span>
+</div>
+
+</body>
+</html>

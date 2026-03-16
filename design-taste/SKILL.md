@@ -61,6 +61,7 @@ There are four named directions. Each one is a coherent design language, not a l
 - No decoration that doesn't serve function
 - Grid-based, modular, image-heavy — product first
 - Utilitarian interface elements with zero flourish
+- Black and White and small spacings, always light mode using white background
 
 **Typography:**
 - Neutral Swiss-modernist sans-serif (Helvetica Neue, Neue Haas Grotesk, or similar)

@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>mialiu.se – Industrial v4</title>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    /* Dark side */
+    --d-bg:    #181810;
+    --d-ink:   #e0d8c4;
+    --d-mid:   #7a7a5a;
+    --d-dim:   #3a3a2a;
+    --d-rule:  #2a2a1c;
+    /* Light side */
+    --l-bg:    #f0ebe0;
+    --l-ink:   #1a1a10;
+    --l-mid:   #6a6a4a;
+    --l-dim:   #a8a888;
+    --l-rule:  #d4cfc0;
+    /* Shared */
+    --olive:   #6a6a42;
+    --sans:    'Inter', 'Helvetica Neue', Helvetica, sans-serif;
+    --mono:    'IBM Plex Mono', 'Courier New', monospace;
+    --split:   50%;   /* split point */
+  }
+
+  html, body {
+    background: var(--l-bg);
+    color: var(--l-ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Wrapper: split background ───────────────────── */
+  .page {
+    width: 1440px;
+    position: relative;
+    /* Dark left half */
+    background: linear-gradient(
+      to right,
+      var(--d-bg) 0%,
+      var(--d-bg) var(--split),
+      var(--l-bg) var(--split),
+      var(--l-bg) 100%
+    );
+  }
+
+  /* ── Nav ─────────────────────────────────────────── */
+  nav {
+    display: grid;
+    grid-template-columns: var(--split) 1fr;
+    height: 52px;
+    border-bottom: 1px solid;
+    border-color: var(--d-rule);
+    position: relative;
+  }
+
+  /* The border needs to cross both halves — use a pseudo */
+  nav::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: var(--split);
+    right: 0;
+    height: 1px;
+    background: var(--l-rule);
+  }
+
+  .nav-dark {
+    background: var(--d-bg);
+    display: flex;
+    align-items: center;
+    padding: 0 48px;
+    gap: 40px;
+    border-right: 1px solid var(--d-rule);
+  }
+
+  .nav-dark a {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--d-mid);
+  }
+
+  .nav-dark a.active { color: var(--d-ink); }
+
+  .nav-light {
+    background: var(--l-bg);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 48px;
+    gap: 40px;
+  }
+
+  .nav-light a {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--l-dim);
+  }
+
+  .nav-light a:hover { color: var(--l-ink); }
+
+  /* ── Hero: name spans the divide ─────────────────── */
+  .hero {
+    display: grid;
+    grid-template-columns: var(--split) 1fr;
+    position: relative;
+  }
+
+  .hero-dark {
+    background: var(--d-bg);
+    padding: 56px 48px 48px;
+    border-right: 1px solid var(--d-rule);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 440px;
+  }
+
+  .hero-light {
+    background: var(--l-bg);
+    padding: 56px 48px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* Name: split in two — left half light on dark, right half dark on light */
+  .name-row {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: var(--split) 1fr;
+    position: absolute;
+    top: 56px;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+  }
+
+  .name-dark-half {
+    background: var(--d-bg);
+    padding-left: 48px;
+    overflow: hidden;
+  }
+
+  .name-dark-half .name {
+    font-size: 144px;
+    font-weight: 300;
+    line-height: 0.88;
+    letter-spacing: -0.03em;
+    color: var(--d-ink);
+    white-space: nowrap;
+  }
+
+  .name-light-half {
+    background: var(--l-bg);
+    overflow: hidden;
+  }
+
+  .name-light-half .name {
+    font-size: 144px;
+    font-weight: 300;
+    line-height: 0.88;
+    letter-spacing: -0.03em;
+    color: var(--l-ink);
+    white-space: nowrap;
+    /* Offset to create visual continuity — same text, same position */
+    margin-left: calc(-1 * var(--split) + 0px);
+    padding-left: 48px;
+  }
+
+  /* Spacer for the name block height */
+  .name-spacer {
+    height: 134px; /* approx name height */
+    grid-column: 1 / -1;
+  }
+
+  /* Spec block below name — dark side */
+  .hero-specs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 32px;
+  }
+
+  .spec-item {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .spec-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--d-mid);
+  }
+
+  .spec-value {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--d-ink);
+    line-height: 1.5;
+  }
+
+  .spec-value a {
+    color: var(--d-ink);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+
+  /* Status indicator — dark side */
+  .status-strip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-top: 24px;
+    border-top: 1px solid var(--d-rule);
+  }
+
+  .status-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--olive);
+    flex-shrink: 0;
+  }
+
+  .status-text {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--d-mid);
+  }
+
+  /* Light side: bio + tagline */
+  .hero-bio-block {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 32px;
+  }
+
+  .bio-text {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--l-mid);
+  }
+
+  .bio-text strong {
+    font-weight: 500;
+    color: var(--l-ink);
+  }
+
+  .bio-text a {
+    color: var(--l-ink);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+
+  .tagline {
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: var(--l-ink);
+    padding-top: 20px;
+    border-top: 1px solid var(--l-rule);
+  }
+
+  /* ── Divider band ─────────────────────────────────── */
+  .divider-band {
+    display: grid;
+    grid-template-columns: var(--split) 1fr;
+    height: 40px;
+    border-top: 1px solid;
+    position: relative;
+  }
+
+  .divider-band::after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: var(--split);
+    right: 0;
+    height: 1px;
+    background: var(--l-rule);
+  }
+
+  .divider-band::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      var(--d-rule) 0%,
+      var(--d-rule) var(--split),
+      var(--l-rule) var(--split),
+      var(--l-rule) 100%
+    );
+  }
+
+  .divider-dark {
+    background: var(--d-bg);
+    border-color: var(--d-rule);
+    border-right: 1px solid var(--d-rule);
+    padding: 0 48px;
+    display: flex;
+    align-items: center;
+  }
+
+  .divider-light {
+    background: var(--l-bg);
+    padding: 0 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .divider-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .divider-dark .divider-label  { color: var(--d-mid); }
+  .divider-light .divider-label { color: var(--l-dim); }
+
+  /* ── Work grid: split layout ─────────────────────── */
+  .work-grid {
+    display: grid;
+    grid-template-columns: var(--split) 1fr;
+    position: relative;
+  }
+
+  .work-col-dark {
+    background: var(--d-bg);
+    border-right: 1px solid var(--d-rule);
+  }
+
+  .work-col-light {
+    background: var(--l-bg);
+  }
+
+  /* Work item */
+  .work-item {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid;
+  }
+
+  .work-col-dark .work-item  { border-color: var(--d-rule); }
+  .work-col-light .work-item { border-color: var(--l-rule); }
+
+  .work-item:last-child { border-bottom: none; }
+
+  .work-thumb {
+    aspect-ratio: 16/9;
+    position: relative;
+  }
+
+  .work-col-dark  .work-thumb { background: var(--d-rule); }
+  .work-col-light .work-thumb { background: var(--l-rule); }
+
+  /* Simulated content overlays */
+  .t-a { background: #1c2838 !important; }
+  .t-b { background: #1c2820 !important; }
+  .t-c { background: #2a2218 !important; }
+  .t-d { background: #c4bfb4 !important; }
+  .t-e { background: #b8c4c0 !important; }
+
+  .work-item-meta {
+    padding: 16px 48px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .work-item-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .work-item-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+  }
+
+  .work-col-dark  .work-item-num { color: var(--d-mid); }
+  .work-col-light .work-item-num { color: var(--l-dim); }
+
+  .work-item-title {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  .work-col-dark  .work-item-title { color: var(--d-ink); }
+  .work-col-light .work-item-title { color: var(--l-ink); }
+
+  .work-item-client {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+
+  .work-col-dark  .work-item-client { color: var(--d-mid); }
+  .work-col-light .work-item-client { color: var(--l-mid); }
+
+  .work-item-year {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .work-col-dark  .work-item-year { color: var(--d-mid); }
+  .work-col-light .work-item-year { color: var(--l-dim); }
+
+  /* ── Footer ───────────────────────────────────────── */
+  .footer {
+    display: grid;
+    grid-template-columns: var(--split) 1fr;
+    position: relative;
+  }
+
+  .footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      var(--d-rule) 0%,
+      var(--d-rule) var(--split),
+      var(--l-rule) var(--split),
+      var(--l-rule) 100%
+    );
+  }
+
+  .footer-dark {
+    background: var(--d-bg);
+    padding: 18px 48px;
+    border-right: 1px solid var(--d-rule);
+  }
+
+  .footer-light {
+    background: var(--l-bg);
+    padding: 18px 48px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .footer-text {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+  }
+
+  .footer-dark  .footer-text { color: var(--d-mid); }
+  .footer-light .footer-text { color: var(--l-dim); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Nav -->
+  <nav>
+    <div class="nav-dark">
+      <a href="#" class="active">Works</a>
+    </div>
+    <div class="nav-light">
+      <a href="#">Design approach</a>
+      <a href="#">About</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero" style="position:relative;">
+
+    <!-- Name spanning the split — rendered in two halves for the colour effect -->
+    <div class="name-row">
+      <div class="name-dark-half">
+        <div class="name">Mia Liu</div>
+      </div>
+      <div class="name-light-half">
+        <div class="name">Mia Liu</div>
+      </div>
+    </div>
+
+    <!-- Dark side -->
+    <div class="hero-dark">
+      <div class="name-spacer"></div>
+
+      <div class="hero-specs">
+        <div class="spec-item">
+          <span class="spec-label">Role</span>
+          <span class="spec-value">Product Maker</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Location</span>
+          <span class="spec-value">Stockholm, SE · UTC+1</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Engagements</span>
+          <span class="spec-value">
+            <a href="#">Netlight AB</a> · <a href="#">Scania</a> ·
+            <a href="#">Thermo-Calc</a> · <a href="#">Storykit</a>
+          </span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Approach</span>
+          <span class="spec-value">Research · Systems thinking · AI workflows</span>
+        </div>
+      </div>
+
+      <div class="status-strip">
+        <div class="status-dot"></div>
+        <span class="status-text">Available · Consulting</span>
+      </div>
+    </div>
+
+    <!-- Light side -->
+    <div class="hero-light">
+      <div class="name-spacer"></div>
+
+      <div class="hero-bio-block">
+        <p class="bio-text">
+          Not just a designer — a <strong>Product Maker</strong> who embraces AI as
+          coworking mates. I envision a future where design and intelligence are
+          inseparable, and I build toward it every day.
+        </p>
+        <p class="tagline">
+          I design at the edge where human intuition meets AI &amp; technology.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Divider band -->
+  <div class="divider-band">
+    <div class="divider-dark">
+      <span class="divider-label">Client work</span>
+    </div>
+    <div class="divider-light">
+      <span class="divider-label">008 projects</span>
+      <span class="divider-label">2021 – 2024</span>
+    </div>
+  </div>
+
+  <!-- Work grid -->
+  <div class="work-grid">
+
+    <!-- Dark column -->
+    <div class="work-col-dark">
+
+      <div class="work-item">
+        <div class="work-thumb t-a"></div>
+        <div class="work-item-meta">
+          <div class="work-item-left">
+            <span class="work-item-num">001</span>
+            <span class="work-item-title">Fleet Intelligence Dashboard</span>
+            <span class="work-item-client">Scania · Product design</span>
+          </div>
+          <span class="work-item-year">2024</span>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-thumb t-b"></div>
+        <div class="work-item-meta">
+          <div class="work-item-left">
+            <span class="work-item-num">003</span>
+            <span class="work-item-title">Research Tools</span>
+            <span class="work-item-client">Thermo-Calc · Systems design</span>
+          </div>
+          <span class="work-item-year">2023</span>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-thumb t-c"></div>
+        <div class="work-item-meta">
+          <div class="work-item-left">
+            <span class="work-item-num">005</span>
+            <span class="work-item-title">Driver Experience HMI</span>
+            <span class="work-item-client">Scania · Hardware</span>
+          </div>
+          <span class="work-item-year">2022</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Light column -->
+    <div class="work-col-light">
+
+      <div class="work-item">
+        <div class="work-thumb t-d"></div>
+        <div class="work-item-meta">
+          <div class="work-item-left">
+            <span class="work-item-num">002</span>
+            <span class="work-item-title">Content Creation Platform</span>
+            <span class="work-item-client">Storykit · UX design</span>
+          </div>
+          <span class="work-item-year">2024</span>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-thumb t-e"></div>
+        <div class="work-item-meta">
+          <div class="work-item-left">
+            <span class="work-item-num">004</span>
+            <span class="work-item-title">AI Workflow Integration</span>
+            <span class="work-item-client">Netlight AB · Strategy</span>
+          </div>
+          <span class="work-item-year">2023</span>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-thumb" style="background:#c0c4bc"></div>
+        <div class="work-item-meta">
+          <div class="work-item-left">
+            <span class="work-item-num">006</span>
+            <span class="work-item-title">Design System</span>
+            <span class="work-item-client">Storykit · Systems design</span>
+          </div>
+          <span class="work-item-year">2022</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-dark">
+      <span class="footer-text">Mia Liu · Product Maker · mialiu.se</span>
+    </div>
+    <div class="footer-light">
+      <span class="footer-text">Stockholm · 2025</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

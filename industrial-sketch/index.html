@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>mialiu.se – Industrial Sustainable Minimalism</title>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --paper:   #f0ebe0;   /* raw linen / kraft paper */
+    --ink:     #1a1908;   /* near-black, warm */
+    --mid:     #5a5a42;   /* dark olive — functional mid-tone */
+    --muted:   #9a9a7a;   /* field labels, captions */
+    --rule:    #c8c2b0;   /* structural dividers */
+    --olive:   #6b6b4a;   /* single accent, used sparingly */
+    --font:    'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font);
+    -webkit-font-smoothing: antialiased;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* ── Structural rule system ──────────────────────── */
+  .rule-h { border-top: 1px solid var(--rule); }
+  .rule-b { border-bottom: 1px solid var(--rule); }
+
+  /* ── Nav ────────────────────────────────────────── */
+  nav {
+    width: 1440px;
+    display: grid;
+    grid-template-columns: 120px 1fr 120px;
+    align-items: center;
+    padding: 20px 40px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .nav-index {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+  }
+
+  .nav-links a.active {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .nav-links a:hover { color: var(--ink); }
+
+  .nav-location {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ── Hero ────────────────────────────────────────── */
+  .hero {
+    width: 1440px;
+    display: grid;
+    grid-template-columns: 40px 1fr 1fr 40px;
+    grid-template-rows: auto auto auto auto;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* Field label row — like a material spec sheet */
+  .hero-fieldrow {
+    grid-column: 2 / 4;
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--rule);
+    padding: 10px 0;
+  }
+
+  .field {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-right: 24px;
+  }
+
+  .field + .field {
+    border-left: 1px solid var(--rule);
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .field-label {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .field-value {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--mid);
+    letter-spacing: 0.04em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Name block */
+  .hero-name {
+    grid-column: 2 / 3;
+    padding: 40px 0 36px;
+    border-right: 1px solid var(--rule);
+    padding-right: 60px;
+  }
+
+  .hero-name h1 {
+    font-size: 96px;
+    font-weight: 300;    /* light — type as catalogue identifier, not headline shout */
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+
+  /* Bio / spec block */
+  .hero-bio {
+    grid-column: 3 / 4;
+    padding: 40px 0 36px;
+    padding-left: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .spec-block {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .spec-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .spec-label {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .spec-text {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--mid);
+    max-width: 400px;
+  }
+
+  .spec-text strong {
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .spec-text a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+
+  /* Tagline row */
+  .hero-tagline {
+    grid-column: 2 / 4;
+    padding: 28px 0;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    align-items: baseline;
+    gap: 0;
+  }
+
+  .tagline-number {
+    width: 60px;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+
+  .tagline-text {
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    max-width: 680px;
+  }
+
+  /* ── Section header ──────────────────────────────── */
+  .section-header {
+    width: 1440px;
+    display: grid;
+    grid-template-columns: 40px 1fr 40px;
+    padding: 16px 40px;
+    border-bottom: 1px solid var(--rule);
+    align-items: center;
+  }
+
+  .section-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .section-title {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .section-count {
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ── Work grid ───────────────────────────────────── */
+  .work-grid {
+    width: 1440px;
+    display: grid;
+    grid-template-columns: 40px repeat(3, 1fr) 40px;
+    gap: 0;
+  }
+
+  .work-row {
+    grid-column: 2 / 5;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .work-card {
+    padding: 0;
+    border-right: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .work-card:last-child { border-right: none; }
+
+  .work-card-image {
+    aspect-ratio: 4/3;
+    background: #d8d2c4;   /* raw material tone, no color */
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Simulated device screenshot as documentary image */
+  .work-card-image::before {
+    content: '';
+    position: absolute;
+    inset: 20px;
+    background: #1a1908;
+    opacity: 0.06;
+  }
+
+  .work-card-image.dark { background: #2a2820; }
+  .work-card-image.mid  { background: #c4bfb0; }
+
+  .work-card-meta {
+    padding: 16px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .card-index {
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .card-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .card-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+
+  .tag {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--rule);
+    padding: 2px 7px;
+  }
+
+  /* ── Footer strip ────────────────────────────────── */
+  .footer-strip {
+    width: 1440px;
+    display: grid;
+    grid-template-columns: 40px 1fr 40px;
+    padding: 16px 40px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-text {
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="rule-b">
+  <span class="nav-index">ML–2025</span>
+  <div class="nav-links">
+    <a href="#" class="active">Works</a>
+    <a href="#">Design approach</a>
+    <a href="#">About</a>
+  </div>
+  <span class="nav-location">Stockholm / UTC+1</span>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+
+  <!-- Spec field row -->
+  <div class="hero-fieldrow">
+    <div class="field">
+      <span class="field-label">Role</span>
+      <span class="field-value">Product Maker</span>
+    </div>
+    <div class="field">
+      <span class="field-label">Location</span>
+      <span class="field-value">Stockholm, SE</span>
+    </div>
+    <div class="field">
+      <span class="field-label">Approach</span>
+      <span class="field-value">AI-Integrated</span>
+    </div>
+    <div class="field">
+      <span class="field-label">Status</span>
+      <span class="field-value">Available · Consulting</span>
+    </div>
+    <div class="field">
+      <span class="field-label">Local time</span>
+      <span class="field-value">11:02:15</span>
+    </div>
+  </div>
+
+  <!-- Name -->
+  <div class="hero-name">
+    <h1>Mia<br>Liu</h1>
+  </div>
+
+  <!-- Bio spec -->
+  <div class="hero-bio">
+    <div class="spec-block">
+      <div class="spec-row">
+        <span class="spec-label">Practice</span>
+        <p class="spec-text">Not just a designer — a <strong>Product Maker</strong> who embraces AI as coworking mates. I envision a future where design and intelligence are inseparable, and I build toward it every day.</p>
+      </div>
+      <div class="spec-row">
+        <span class="spec-label">Current engagements</span>
+        <p class="spec-text">Consulting at <a href="#">Netlight AB</a>, embedded with <a href="#">Scania</a>, <a href="#">Thermo-Calc</a>, and <a href="#">Storykit</a> — solving complex product challenges through research, systems thinking, and AI-integrated workflows.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tagline -->
+  <div class="hero-tagline">
+    <span class="tagline-number">—</span>
+    <p class="tagline-text">I design at the edge where human intuition meets AI &amp; technology.</p>
+  </div>
+
+</section>
+
+<!-- Work section header -->
+<div class="section-header">
+  <div class="section-meta">
+    <span class="section-title">Client work</span>
+    <span class="section-count">08 projects</span>
+  </div>
+</div>
+
+<!-- Work grid -->
+<div class="work-grid">
+  <div class="work-row">
+
+    <div class="work-card">
+      <div class="work-card-image dark"></div>
+      <div class="work-card-meta">
+        <span class="card-index">001</span>
+        <span class="card-title">Scania — Fleet Intelligence</span>
+        <div class="card-tags">
+          <span class="tag">Product design</span>
+          <span class="tag">AI</span>
+          <span class="tag">Enterprise</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-card-image mid"></div>
+      <div class="work-card-meta">
+        <span class="card-index">002</span>
+        <span class="card-title">Storykit — Content Platform</span>
+        <div class="card-tags">
+          <span class="tag">UX design</span>
+          <span class="tag">SaaS</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-card-image"></div>
+      <div class="work-card-meta">
+        <span class="card-index">003</span>
+        <span class="card-title">Thermo-Calc — Research Tools</span>
+        <div class="card-tags">
+          <span class="tag">Systems design</span>
+          <span class="tag">B2B</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Footer strip -->
+<div class="footer-strip">
+  <div class="footer-inner">
+    <span class="footer-text">Mia Liu · Product Design · Stockholm</span>
+    <span class="footer-text">mialiu.se</span>
+  </div>
+</div>
+
+</body>
+</html>

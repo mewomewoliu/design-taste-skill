@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>mialiu.se – Industrial v3</title>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg:      #f4efe4;   /* raw cartridge paper */
+    --ink:     #1a1a10;
+    --mid:     #6a6a50;
+    --dim:     #a8a890;
+    --rule:    #d4cfc0;
+    --olive:   #5a5a38;
+    --sans:    'Inter', 'Helvetica Neue', Helvetica, sans-serif;
+    --mono:    'IBM Plex Mono', 'Courier New', monospace;
+  }
+
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Document wrapper ─────────────────────────────── */
+  .doc {
+    width: 1440px;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  /* ── Top band: document header ───────────────────── */
+  .doc-header {
+    display: grid;
+    grid-template-columns: 280px 1fr 280px;
+    border-bottom: 2px solid var(--ink);
+    padding: 16px 48px;
+    align-items: center;
+  }
+
+  .doc-id {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  .doc-title-center {
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .doc-meta-right {
+    text-align: right;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--dim);
+    letter-spacing: 0.06em;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-items: flex-end;
+  }
+
+  /* ── Name stamp block ─────────────────────────────── */
+  .name-band {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .name-side {
+    border-right: 1px solid var(--rule);
+    padding: 40px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 24px;
+  }
+
+  .side-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+
+  .side-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .side-value {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--mid);
+    letter-spacing: 0.04em;
+  }
+
+  .name-main {
+    padding: 32px 48px 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .name-stamp {
+    font-family: var(--sans);
+    font-size: 140px;
+    font-weight: 300;
+    line-height: 0.88;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    /* Stamp-like: slightly degraded via text-shadow */
+    text-shadow:
+      1px 0 0 rgba(26,26,16,0.04),
+      0 1px 0 rgba(26,26,16,0.04);
+  }
+
+  /* ── Tagline band ─────────────────────────────────── */
+  .tagline-band {
+    display: grid;
+    grid-template-columns: 280px 1fr 360px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .tagline-left {
+    border-right: 1px solid var(--rule);
+    padding: 24px 48px;
+    display: flex;
+    align-items: center;
+  }
+
+  .section-marker {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+
+  .tagline-mid {
+    padding: 24px 48px;
+    border-right: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+  }
+
+  .tagline-text {
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  .tagline-right {
+    padding: 24px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .status-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--olive);
+    flex-shrink: 0;
+  }
+
+  .status-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  /* ── Bio band ─────────────────────────────────────── */
+  .bio-band {
+    display: grid;
+    grid-template-columns: 280px 1fr 1fr;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .bio-label-col {
+    border-right: 1px solid var(--rule);
+    padding: 28px 48px;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 32px;
+  }
+
+  .bio-col {
+    padding: 32px 48px;
+    border-right: 1px solid var(--rule);
+  }
+
+  .bio-col:last-child { border-right: none; }
+
+  .bio-heading {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 12px;
+  }
+
+  .bio-text {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--mid);
+  }
+
+  .bio-text strong {
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .bio-text a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+
+  /* ── Work index ───────────────────────────────────── */
+  .work-band-header {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    border-bottom: 1px solid var(--rule);
+    padding: 14px 0;
+  }
+
+  .work-band-label {
+    padding: 0 48px;
+    border-right: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--dim);
+    display: flex;
+    align-items: center;
+  }
+
+  .work-band-count {
+    padding: 0 48px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--mid);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Work index: two-column list */
+  .work-index {
+    display: grid;
+    grid-template-columns: 280px 1fr 1fr;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .work-index-gutter {
+    border-right: 1px solid var(--rule);
+  }
+
+  .work-col {
+    border-right: 1px solid var(--rule);
+  }
+
+  .work-col:last-child { border-right: none; }
+
+  /* Column headings */
+  .work-col-head {
+    display: grid;
+    grid-template-columns: 48px 1fr 120px 80px;
+    padding: 10px 48px 10px 32px;
+    border-bottom: 1px solid var(--rule);
+    background: rgba(0,0,0,0.02);
+  }
+
+  .col-head {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+
+  /* Work item row */
+  .work-item {
+    display: grid;
+    grid-template-columns: 48px 1fr 120px 80px;
+    padding: 18px 48px 18px 32px;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+  }
+
+  .work-item:last-child { border-bottom: none; }
+
+  .wi-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--dim);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .wi-name {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .wi-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .wi-client {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--mid);
+    letter-spacing: 0.04em;
+  }
+
+  .wi-type {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--mid);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .wi-year {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--dim);
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+  }
+
+  /* ── Document footer ──────────────────────────────── */
+  .doc-footer {
+    display: grid;
+    grid-template-columns: 280px 1fr 280px;
+    padding: 14px 48px;
+    border-top: 2px solid var(--ink);
+    align-items: center;
+  }
+
+  .footer-mono {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--dim);
+    letter-spacing: 0.08em;
+  }
+
+  .footer-mono.center { text-align: center; }
+  .footer-mono.right  { text-align: right; }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <!-- Document header band -->
+  <div class="doc-header">
+    <span class="doc-id">Doc. ref. ML–2025–001</span>
+    <span class="doc-title-center">Portfolio · Product Design</span>
+    <div class="doc-meta-right">
+      <span>Stockholm, SE</span>
+      <span>Rev. 08 · 2025</span>
+    </div>
+  </div>
+
+  <!-- Name stamp -->
+  <div class="name-band">
+    <div class="name-side">
+      <div class="side-field">
+        <span class="side-label">Name</span>
+        <span class="side-value">Mia Liu</span>
+      </div>
+      <div class="side-field">
+        <span class="side-label">Role</span>
+        <span class="side-value">Product Maker</span>
+      </div>
+      <div class="side-field">
+        <span class="side-label">Location</span>
+        <span class="side-value">Stockholm, SE</span>
+      </div>
+      <div class="side-field">
+        <span class="side-label">Approach</span>
+        <span class="side-value">AI-Native</span>
+      </div>
+    </div>
+    <div class="name-main">
+      <h1 class="name-stamp">Mia<br>Liu</h1>
+    </div>
+  </div>
+
+  <!-- Tagline -->
+  <div class="tagline-band">
+    <div class="tagline-left">
+      <span class="section-marker">§ 01 — Position</span>
+    </div>
+    <div class="tagline-mid">
+      <p class="tagline-text">I design at the edge where<br>human intuition meets AI &amp; technology.</p>
+    </div>
+    <div class="tagline-right">
+      <div class="status-row">
+        <div class="dot"></div>
+        <span class="status-label">Available · Consulting</span>
+      </div>
+      <div class="status-row">
+        <span class="status-label" style="padding-left:13px">UTC+1 · 11:02</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bio -->
+  <div class="bio-band">
+    <div class="bio-label-col">
+      <span class="section-marker">§ 02 — Practice</span>
+    </div>
+    <div class="bio-col">
+      <p class="bio-heading">About</p>
+      <p class="bio-text">Not just a designer — a <strong>Product Maker</strong> who embraces AI as coworking mates. I envision a future where design and intelligence are inseparable, and I build toward it every day.</p>
+    </div>
+    <div class="bio-col">
+      <p class="bio-heading">Current engagements</p>
+      <p class="bio-text">Consulting at <a href="#">Netlight AB</a>, embedded with <a href="#">Scania</a>, <a href="#">Thermo-Calc</a>, and <a href="#">Storykit</a> — solving complex product challenges through research, systems thinking, and AI-integrated workflows.</p>
+    </div>
+  </div>
+
+  <!-- Work index header -->
+  <div class="work-band-header">
+    <div class="work-band-label">§ 03 — Works</div>
+    <div class="work-band-count">
+      <span>Client projects</span>
+      <span>008 items</span>
+    </div>
+  </div>
+
+  <!-- Work index grid -->
+  <div class="work-index">
+    <div class="work-index-gutter"></div>
+
+    <!-- Left column -->
+    <div class="work-col">
+      <div class="work-col-head">
+        <span class="col-head">Ref</span>
+        <span class="col-head">Project · Client</span>
+        <span class="col-head">Type</span>
+        <span class="col-head" style="text-align:right">Year</span>
+      </div>
+      <div class="work-item">
+        <span class="wi-num">001</span>
+        <div class="wi-name">
+          <span class="wi-title">Fleet Intelligence</span>
+          <span class="wi-client">Scania</span>
+        </div>
+        <span class="wi-type">Product</span>
+        <span class="wi-year">2024</span>
+      </div>
+      <div class="work-item">
+        <span class="wi-num">002</span>
+        <div class="wi-name">
+          <span class="wi-title">Content Platform</span>
+          <span class="wi-client">Storykit</span>
+        </div>
+        <span class="wi-type">UX</span>
+        <span class="wi-year">2024</span>
+      </div>
+      <div class="work-item">
+        <span class="wi-num">003</span>
+        <div class="wi-name">
+          <span class="wi-title">Research Tools</span>
+          <span class="wi-client">Thermo-Calc</span>
+        </div>
+        <span class="wi-type">Systems</span>
+        <span class="wi-year">2023</span>
+      </div>
+      <div class="work-item">
+        <span class="wi-num">004</span>
+        <div class="wi-name">
+          <span class="wi-title">AI Workflow Integration</span>
+          <span class="wi-client">Netlight AB</span>
+        </div>
+        <span class="wi-type">Strategy</span>
+        <span class="wi-year">2023</span>
+      </div>
+    </div>
+
+    <!-- Right column -->
+    <div class="work-col">
+      <div class="work-col-head">
+        <span class="col-head">Ref</span>
+        <span class="col-head">Project · Client</span>
+        <span class="col-head">Type</span>
+        <span class="col-head" style="text-align:right">Year</span>
+      </div>
+      <div class="work-item">
+        <span class="wi-num">005</span>
+        <div class="wi-name">
+          <span class="wi-title">Driver Experience HMI</span>
+          <span class="wi-client">Scania</span>
+        </div>
+        <span class="wi-type">Hardware</span>
+        <span class="wi-year">2022</span>
+      </div>
+      <div class="work-item">
+        <span class="wi-num">006</span>
+        <div class="wi-name">
+          <span class="wi-title">Simulation Interface</span>
+          <span class="wi-client">Thermo-Calc</span>
+        </div>
+        <span class="wi-type">Product</span>
+        <span class="wi-year">2022</span>
+      </div>
+      <div class="work-item">
+        <span class="wi-num">007</span>
+        <div class="wi-name">
+          <span class="wi-title">Design System</span>
+          <span class="wi-client">Storykit</span>
+        </div>
+        <span class="wi-type">Systems</span>
+        <span class="wi-year">2021</span>
+      </div>
+      <div class="work-item">
+        <span class="wi-num">008</span>
+        <div class="wi-name">
+          <span class="wi-title">AI Prototyping Lab</span>
+          <span class="wi-client">Netlight AB</span>
+        </div>
+        <span class="wi-type">Research</span>
+        <span class="wi-year">2021</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Document footer -->
+  <div class="doc-footer">
+    <span class="footer-mono">Mia Liu · mialiu.se</span>
+    <span class="footer-mono center">Product Design · AI-Integrated Workflows</span>
+    <span class="footer-mono right">Page 1 of 1</span>
+  </div>
+
+</div>
+</body>
+</html>
