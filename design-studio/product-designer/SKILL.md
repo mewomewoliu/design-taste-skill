@@ -207,6 +207,24 @@ Every interface design must account for:
 
 ---
 
+## References
+
+Study these for what product design looks like when every detail of the experience has been considered.
+
+**Linear**
+The product itself is the reference. Study the entire experience: keyboard-first navigation, empty states, onboarding, error handling, the inbox model. Every UX decision is a considered position, not a default. When in doubt about a product interaction, ask how Linear would handle it.
+
+**Superhuman**
+What happens when a solved problem (email) is redesigned with zero tolerance for friction. Study the onboarding (the famous "Superhuman tour"), the keyboard command model, and how they use progressive disclosure to surface power without overwhelming new users.
+
+**Raycast**
+Command palette design as the purest expression of interaction clarity. Every feature is accessible from a single entry point, search is the universal navigation model, and complexity is hidden until needed. Study it for how to make a very capable product feel simple.
+
+**Basecamp — "Getting Real"**
+Not a product reference but a thinking reference. The best articulation of product design philosophy: build less, design for the common case, let features prove themselves. Required reading before designing any new feature. Free at basecamp.com/gettingreal.
+
+---
+
 ## Quality Standard
 
 A product design is done when:

@@ -95,6 +95,24 @@ When the user asks for creative direction (not a critique of existing work but g
 
 ---
 
+## References
+
+Study these not as aesthetic templates but as examples of what it looks like when someone is in full command of a design discipline.
+
+**Dieter Rams — 10 principles for good design**
+The benchmark for principled design thinking. Study them as questions to ask of work ("Is it honest? Does it last? Is every part necessary?"), not as rules to follow. The underlying question is always: what earned its place?
+
+**Kenya Hara / Muji**
+The art of emptiness as intention. Muji's design language proves that restraint is a position, not an absence. When in doubt, study how they handle packaging — everything is exactly enough.
+
+**Pentagram**
+How a single studio maintains genuine quality across radically different clients, industries, and briefs without homogenizing them. Their case studies show what it looks like to have strong opinions without a house style.
+
+**Charles & Ray Eames**
+Coherence of vision across every scale — from a building to a chair to a film. The Eameses never made anything that didn't feel like it came from the same mind. That's the standard for cross-discipline coherence.
+
+---
+
 ## Quality Standard
 
 Before approving anything, ask:

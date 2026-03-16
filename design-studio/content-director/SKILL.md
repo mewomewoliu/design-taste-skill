@@ -115,6 +115,24 @@ For any microcopy request, produce:
 
 ---
 
+## References
+
+Study these for what great content sounds like when it's specific, compressed, and in full command of its voice.
+
+**Mailchimp Voice & Tone guide**
+The foundational modern UX writing reference. Study the structure — especially the "context + tone" format and the don't/do examples. It's the clearest demonstration that content has a system, not just guidelines.
+
+**Monzo — in-product copy**
+Product copy that is warm, specific, and human without being cutesy. Every notification, error state, and onboarding message sounds like a smart friend, not a bank. Study how they handle money anxiety with directness and care.
+
+**Gov.uk content design**
+Radical clarity. The Gov.uk content principles are the best articulation of user-first information architecture in copy form. "Start with user needs, not government needs" applies to every product. Study how they strip jargon without losing precision.
+
+**Apple — marketing copy**
+Economy as mastery. "1,000 songs in your pocket." "The computer for the rest of us." Study the compression: how much meaning per word, how specific the claim, how the language earns attention rather than demanding it.
+
+---
+
 ## Quality Standard
 
 Content is done when:

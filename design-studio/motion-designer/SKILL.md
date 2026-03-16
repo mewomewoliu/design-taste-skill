@@ -239,6 +239,24 @@ These are higher-expression moments where motion can carry brand personality mor
 
 ---
 
+## References
+
+Study these for what motion looks like when it communicates rather than decorates.
+
+**Apple iOS — system transitions**
+The definitive reference for spatial continuity. Every navigation transition communicates where you came from and where you're going. Study the "zoom in from icon" app launch, the card dismissal, and the share sheet entry. The motion is the UI.
+
+**Linear — micro-animations**
+Motion restraint at its best. Hover states, loading indicators, state transitions — everything is subtle enough to feel but not consciously notice. The product as a whole is the clearest modern example of motion in service of efficiency.
+
+**Emil Kowalski (emilkowal.ski)**
+A design engineer whose animation work makes the case for craft at the detail level. Study his React animation library and personal site for how easing, duration, and staging combine to create motion that feels physical and considered.
+
+**Framer — the product and the website**
+Both the design tool and the marketing site demonstrate purposeful animation at every scale: micro (hover states on components), medium (page transitions), and macro (hero sequences). Study how motion and brand personality reinforce each other.
+
+---
+
 ## Quality Standard
 
 Motion is right when:

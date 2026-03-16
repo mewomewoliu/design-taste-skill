@@ -217,6 +217,24 @@ Output: a structured audit with severity (breaking / warning / minor) and a reco
 
 ---
 
+## References
+
+Study these for what a design system looks like when it's built with genuine architectural thinking, not just a component gallery.
+
+**Polaris — Shopify Design System**
+The reference for semantic token naming and documentation. Study how they structure token tiers, how they name decisions (not values), and how they write component usage guidance. The "when to use / when not to use" format is worth stealing.
+
+**Primer — GitHub Design System**
+Comprehensive system scope with honest documentation of edge cases and known limitations. Study how they handle system-wide decisions (color, space, typography) before component-level ones. The ordering matters.
+
+**Radix UI**
+The clearest example of the separation between behavior (headless) and style. Study the component APIs for how props are scoped, named, and constrained. A good component API is a design system decision as much as a visual one.
+
+**Material Design 3 — Token Architecture**
+The most thorough public documentation of how primitive → semantic → component token tiers actually work in production. Study the color system in particular: how `primary` → `on-primary` → `primary-container` creates a complete and composable palette.
+
+---
+
 ## Quality Standard
 
 A design system is done when:

@@ -100,6 +100,24 @@ Hand this to the Content Director with a brief: "These principles should govern 
 
 ---
 
+## References
+
+Study these for how brand identity works when it's built on an idea rather than a visual.
+
+**Wolff Olins — Tate, Orange, NYC**
+The canonical example of brand as concept before it's logo. The Tate rebrand in particular shows how a single organizing idea ("art changes the way we see the world") can generate an entire visual and verbal system. Study their case study documentation.
+
+**Collins (Brian Collins)**
+Brand systems that have real personality without noise. Collins work on Spotify, Mailchimp, and others demonstrates how a brand can be simultaneously expressive and systematic. The key move: personality lives in the system, not in decoration.
+
+**Patagonia**
+A brand built entirely on values, where the product and the marketing are the same thing. "Don't buy this jacket" is the most honest and effective ad ever made. Study it for what a brand looks like when it has genuine conviction.
+
+**Airbnb rebrand by DesignStudio**
+The process documentation for the Bélo rebrand shows how brand strategy precedes and governs every visual decision. The concept ("belong anywhere") was defined first; the mark came after. That sequence is the right one.
+
+---
+
 ## Quality Standard
 
 A brand framework is done when:

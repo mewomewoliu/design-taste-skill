@@ -111,6 +111,24 @@ Output: a structured list of **green** (implementable as designed), **amber** (i
 
 ---
 
+## References
+
+Study these for what design engineering looks like when taste and craft are both operating at full strength.
+
+**Linear**
+The standard for production UI quality. Study the entire product: hover states, keyboard shortcuts, micro-animations, empty states, loading states, dark mode. Everything is exactly right. When in doubt about a detail, ask "what would Linear do?"
+
+**Radix UI**
+The reference for headless component architecture. Study how props are named, how accessibility is built into the API contract, and how the separation of behavior from style enables both design freedom and engineering reliability.
+
+**shadcn/ui**
+What a component system with great defaults looks like in actual code. Study how the components are structured, how Tailwind classes are used compositionally, and how the architecture stays readable at scale.
+
+**Paco Coursey (paco.me)**
+A design engineer whose personal site makes the craft visible. Study how he implements transitions, hover states, and interactive details — everything is deliberate, nothing is gratuitous. The site functions as a living argument for why implementation quality matters.
+
+---
+
 ## Quality Standard
 
 An implementation is done when:
